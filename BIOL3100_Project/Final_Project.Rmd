@@ -1,0 +1,385 @@
+---
+title: "An Exploratory Analysis of Air Quality and Life Expectancy Across United States Counties"
+date: "April 21st, 2026"
+output: 
+    html_document:
+        theme: paper
+        highlight: tango
+        toc: true
+        toc_float:
+            collapsed: true
+        number_sections: false
+        code_download: true
+        df_print: kable
+        code_folding: show
+        mode: selfcontained
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE, cache = TRUE, warning = FALSE, message = FALSE)
+```
+
+[Return to Homepage](../index.html)
+
+# **Introduction**
+
+The World Health Organization (WHO) estimates that air pollution causes 7 million premature deaths each year and is linked to 1 in 8 deaths globally.
+
+This project investigates the relationships between air quality and life expectancy in the U.S., using two datasets: annual Air Quality Index (AQI) data from the **Environmental Protection Agency (EPA)** and county-level life expectancy estimates stratified by income quartile from the **Health Inequality Project**.
+
+The central questions we are exploring are:
+
+- Do counties with better air quality tend to have higher life expectancy?
+- Does this relationship change across income quartiles?
+- How are EPA air quality monitors distributed geographically across the U.S.?
+
+---
+
+# **Data & Setup**
+
+First, let's load some packages. `tidyverse` will help us clean and visualize our data, `janitor` will help standardize column names, `skimr` will produce summary statistics, and `sf` and `tigris` help with mapping sites geographically.
+
+```{r}
+library(tidyverse)
+library(skimr)
+library(janitor)
+library(sf)
+library(tigris)
+```
+
+## Loading the Data
+
+Let's load and save the datasets into objects.
+```{r}
+air_q_dat <- read.csv('data/annual_aqi_by_county_2025.csv')
+
+health_dat <- read.csv('data/health_ineq_final_project.csv')
+
+# Take a look at our data
+head(air_q_dat)
+head(health_dat)
+```
+
+
+--- 
+
+
+# **Data Cleaning**
+
+## Health Data
+
+Several administrative columns (e.g., commuting zone identifiers) from the health data were not needed, and were dropped. The state name column was standardized to `state_name` for so the two datasets could be joined together later.
+
+```{r clean-health}
+health_clean <- health_dat %>%
+  distinct() %>%
+  rename(state_name = statename) %>%
+  select(-c(cty, cz, cz_name, cz_pop2000, state_id, stateabbrv))
+```
+
+## Air Quality Data
+
+The raw AQI data contains multiple rows per county (one per monitoring site). I collapsed these to a single row per county by averaging all numeric columns. The raw AQI data originally had numbers for each AQI day-type counts (good, moderate, unhealthy, etc.). These were converted to **proportions** of total measured days. This ensured that counties with different numbers of air quality monitoring days were comparable.
+
+```{r clean-air-data}
+days <- c('good_days', 'moderate_days',
+          'unhealthy_for_sensitive_groups_days',
+          'unhealthy_days', 'very_unhealthy_days',
+          'hazardous_days')
+
+air_q_clean <- air_q_dat %>%
+  distinct() %>%
+  clean_names() %>%
+  rename(county_name = county, state_name = state) %>%
+  group_by(state_name, county_name) %>%
+  summarize(across(where(is.numeric), mean, na.rm = TRUE), .groups = "drop") %>%
+  mutate(across(all_of(days), ~ . / days_with_aqi))
+```
+
+## Joining the Datasets
+
+The two datasets are joined on **both** county name and state name. Joining on county name alone produced many false matches, since county names like "Jefferson" or "Washington" appear in dozens of states. Apparently, there are 26 Jefferson counties and 30 Washington counties in the U.S.
+
+```{r join}
+join_dat <- left_join(
+  air_q_clean,
+  health_clean,
+  by = c("county_name", "state_name")
+)
+```
+
+Let's do a quick skim of the joined dataset to ensure that this joined correctly.
+```{r skim}
+skim(join_dat)
+```
+
+---
+
+# **Exploratory Analysis**
+
+## Air Quality vs. Population Size
+
+For our first analysis, let's examine whether county population is associated with the proportion of good air quality days. It looks like a large majority of U.S. counties have a high proportion of good air quality days, which is great.
+```{r pop-vs-aqi}
+join_dat %>%
+  ggplot(aes(x = cty_pop2000, y = good_days)) +
+  geom_point(alpha = 0.4, color = "steelblue") +
+  geom_smooth(method = "lm", color = "red4") +
+  scale_x_log10(labels = scales::comma) +
+  labs(
+    x = "County Population",
+    y = "Proportion of Good AQI Days",
+    title = "Air Quality vs. County Population Size"
+  ) +
+  theme_minimal()
+```
+
+## State-Level Comparison
+
+Now, let's look into four different states and examine their air quality-life expectancy relationships. I selected California, Texas, New York, and Utah to see if any regional patterns emerge. It looks like this relationship is modest, especially in Utah.
+
+```{r state-facet}
+join_dat %>%
+  filter(state_name %in% c("California", "Texas", "New York", "Utah")) %>%
+  ggplot(aes(x = good_days, y = le_agg_q1_F)) +
+  geom_point(alpha = 0.5, color = "steelblue") +
+  geom_smooth(method = "lm", color = "red4") +
+  facet_wrap(~ state_name) +
+  labs(
+    x = "Proportion of Good AQI Days",
+    y = "Life Expectancy (Women, Q1 Income)",
+    title = "Air Quality vs. Life Expectancy by State",
+    subtitle = "Q1 = Lowest Income Quartile"
+  ) +
+  theme_minimal()
+```
+
+## Air Quality vs. Life Expectancy by Income Quartile
+
+Does the effect of air quality on life expectancy differ across income groups? Low-income populations may be more exposed to poor air quality and may have less access to healthcare.
+
+To enable a clean comparison, I averaged male and female life expectancy within each income quartile, reducing eight lines to four.
+
+```{r income-quartile}
+join_dat %>%
+  mutate(
+    le_agg_q1 = (le_agg_q1_F + le_agg_q1_M) / 2,
+    le_agg_q2 = (le_agg_q2_F + le_agg_q2_M) / 2,
+    le_agg_q3 = (le_agg_q3_F + le_agg_q3_M) / 2,
+    le_agg_q4 = (le_agg_q4_F + le_agg_q4_M) / 2
+  ) %>%
+  select(good_days, le_agg_q1, le_agg_q2, le_agg_q3, le_agg_q4) %>%
+  pivot_longer(
+    cols = starts_with("le_agg"),
+    names_to = "income_quartile",
+    values_to = "life_expectancy"
+  ) %>%
+  mutate(income_quartile = recode(income_quartile,
+    "le_agg_q1" = "Q1 (Below $22,600)",
+    "le_agg_q2" = "Q2 ($22,600-$43,300)",
+    "le_agg_q3" = "Q3 ($43,300-$69,800",
+    "le_agg_q4" = "Q4 (Above $69,800)"
+  )) %>%
+  ggplot(aes(x = good_days, y = life_expectancy, color = income_quartile)) +
+  geom_smooth(method = "lm", se = TRUE, alpha = 0.15) +
+  scale_color_brewer(palette = "RdYlBu", direction = -1) +
+  labs(
+    x = "Proportion of Good AQI Days",
+    y = "Average Life Expectancy (years)",
+    color = "Income Quartile",
+    title = "Air Quality vs. Life Expectancy by Income Quartile"
+  ) +
+  theme_minimal()
+```
+
+Once again, it looks like the relationship between the Proportion of Good AQI Days and Average Life Expectancy is modest, but all four groups has a slight positive slope (which means that as air quality gets better, life expectancy gets slightly higher). This graph also shows that those lower income quartiles have lower life expetancies.
+
+## Pollutant Composition by State
+
+Different counties are affected by different pollutants. Ozone is more common in sunny, high-traffic areas, while PM2.5 is associated with wildfires and industrial sources. This chart shows which pollutants dominate AQI readings in each state.
+
+This next analysis finds the mean number of pollutant days in each state. I used pivot_longer to combine these pollutant means into their own column. I used the recode() function to replace specific values in the newly-formed "pollutant" column with clean/standardized names (so the figure looks nice). 
+
+```{r pollutant-by-state, fig.height = 10}
+join_dat %>%
+  group_by(state_name) %>%
+  summarise(across(c(days_ozone, days_pm2_5, days_co, days_no2), mean, na.rm = TRUE)) %>%
+  pivot_longer(-state_name, names_to = "pollutant", values_to = "days") %>%
+  mutate(pollutant = recode(pollutant,
+    "days_ozone" = "Ozone",
+    "days_pm2_5" = "PM2.5",
+    "days_co"    = "Carbon Monoxide",
+    "days_no2"   = "Nitrogen Dioxide"
+  )) %>%
+  ggplot(aes(x = reorder(state_name, days), y = days, fill = pollutant)) +
+  geom_col() +
+  coord_flip() +
+  scale_fill_brewer(palette = "Set2") +
+  labs(
+    x = NULL,
+    y = "Average Days per County",
+    fill = "Pollutant",
+    title = "Dominant Air Pollutants by State (2025)"
+  ) +
+  theme_minimal()
+```
+
+This big figure shows that Utah is the 7th state with the worst air quality. Let's zero in on Utah by making the same type of figure for its counties.
+
+```{r}
+air_q_clean %>%
+  filter(state_name == "Utah") %>%
+  group_by(county_name) %>%
+  summarise(across(c(days_ozone, days_pm2_5, days_co, days_no2), mean, na.rm = TRUE)) %>%
+  pivot_longer(-county_name, names_to = "pollutant", values_to = "days") %>%
+  mutate(pollutant = recode(pollutant,
+    "days_ozone" = "Ozone",
+    "days_pm2_5" = "PM2.5",
+    "days_co"    = "Carbon Monoxide",
+    "days_no2"   = "Nitrogen Dioxide"
+  )) %>%
+  ggplot(aes(x = reorder(county_name, days), y = days, fill = pollutant)) +
+  geom_col() +
+  coord_flip() +
+  scale_fill_brewer(palette = "Set2") +
+  labs(
+    x = NULL,
+    y = "Average Days",
+    fill = "Pollutant",
+    title = "Dominant Air Pollutants in Utah's Counties (2025)"
+  ) +
+  theme_minimal()
+```
+
+Not every county in Utah was included in the AQI dataset (only 17/29 counties are represented here). Additionally, the lower numbers in Garfield and Wayne counties could be due to a lower number of air quality monitors. However, it looks like Utah's most measured pollutant is ozone. If Utah experiences hotter and drier summers, the amount of ground-level ozone will increase in future years.
+
+---
+
+# **Geographic Mapping of Air Quality Monitors**
+
+## Monitor Locations (All Sites)
+
+Using the EPA's dataset, let's map the physical locations of all active air quality monitoring sites in the U.S. The `sf` and `tigris` packages provide spatial infrastructure: `tigris` downloads official Census Bureau state shapefiles, and `sf` handles coordinate transformations.
+
+To make the map cleaner, I removed any states and terrorities not the contiguous U.S. The final map will have only 48 states.
+
+```{r map-setup, results = "hide"}
+options(tigris_use_cache = TRUE)
+
+states_sf <- states(cb = TRUE, resolution = "20m") %>%
+  filter(!STUSPS %in% c("AK", "HI", "PR", "VI", "GU", "MP", "AS"))
+```
+
+Let's load the AQI dataset again, but this time, I'm only keeping latitude and longitude coordinates. Since each air quality monitor may have may several measurements, I only kept distinct latitude and longitude values.
+
+```{r map-plain}
+locations <- read.csv('data/annual_conc_by_monitor_2025.csv') %>%
+  clean_names() %>%
+  filter(!is.na(latitude), !is.na(longitude)) %>%
+  distinct(latitude, longitude)
+
+locations_sf <- st_as_sf(locations, coords = c("longitude", "latitude"), crs = 4326)
+
+ggplot() +
+  geom_sf(data = states_sf, fill = "gray95", color = "gray60", linewidth = 0.3) +
+  geom_sf(data = locations_sf, size = 0.8, alpha = 0.6, color = "purple3") +
+  coord_sf(xlim = c(-125, -66), ylim = c(24, 50), expand = FALSE) +
+  labs(title = "EPA Air Quality Monitor Locations (2025)") +
+  theme_void() +
+  theme(plot.title = element_text(hjust = 0.5, size = 14))
+```
+
+Looking at the large map, it looks like several monitors are overlapping with each other, which is making the purple color darker! As expected, most air quality monitors are in the more populated areas in the U.S.
+
+## Monitor Locations Colored by Air Quality
+
+To visualize regional differences in air quality, I joined each monitor's location to the county-level proportion of good AQI days.
+
+```{r map-colored}
+locations_colored <- read.csv('data/annual_conc_by_monitor_2025.csv') %>%
+  clean_names() %>%
+  filter(!is.na(latitude), !is.na(longitude)) %>%
+  left_join(
+    air_q_clean %>% select(county_name, state_name, good_days),
+    by = c("county_name", "state_name")
+  )
+
+locations_colored_sf <- st_as_sf(
+  locations_colored,
+  coords = c("longitude", "latitude"),
+  crs = 4326
+)
+
+ggplot() +
+  geom_sf(data = states_sf, fill = "gray95", color = "gray60", linewidth = 0.3) +
+  geom_sf(data = locations_colored_sf, aes(color = good_days), size = 0.8, alpha = 0.7) +
+  scale_color_viridis_c(option = "magma", name = "Prop. Good Days") +
+  coord_sf(xlim = c(-125, -66), ylim = c(24, 50), expand = FALSE) +
+  labs(title = "Air Quality Monitor Locations (2025)") +
+  theme_void() +
+  theme(plot.title = element_text(hjust = 0.5, size = 13))
+```
+
+In this figure, darker colors mean lower amounts of good air quality days. Populous regions in the Southwest U.S. tend to have lower proportions of good air quality days.
+
+# **Model Testing**
+
+The previous figures show that income is a potential strong contributor to life expectancy, but does adding in air quality data change these predictions? In this next line of code, I made two linear models: one with income quartile predicting life expectancy, and one with quartile and the proportion of good days predicting life expectancy. Do the two models differ from each other significantly?
+
+```{r}
+model_dat <- join_dat %>%
+  mutate(
+    le_q1 = (le_agg_q1_F + le_agg_q1_M) / 2,
+    le_q4 = (le_agg_q4_F + le_agg_q4_M) /2
+  ) %>%
+  pivot_longer(c(le_q1, le_q4), names_to = 'quartile', values_to = 'life_expectancy')
+
+mod1 <- lm(data = model_dat, life_expectancy~quartile)
+
+mod2 <- lm(data = model_dat, life_expectancy~good_days*quartile)
+
+summary(mod1)
+```
+```{r}
+summary(mod2)
+```
+Model 2's predictive power was no different from Model 1's predictive power. Their R-squared and residual standard error values were practically the same in both models.
+
+|    |mod1|mod2|
+|---:|---:|---:|
+|R-squared|0.8651|0.8652|
+|Residual SE|1.43|1.43|
+|Income gap estimate|7.24 years|7.05 years
+
+Model 1 also has a slightly lower AIC value (which is preferable)
+
+```{r}
+AIC(mod1, mod2)
+```
+
+## What these numbers mean
+
+The Q4 (highest income) group lives, on average, 7.24 years longer than the Q1 group, and income quartile alone explains 86.5% of the variance in county-level life expectancy. Air quality, measured by the proportion of good AQI days, adds no meaningful explanatory power to these models. This suggests that health inequalities between poor and rich groups are driven by factors other than air quality (maybe healthcare access, diet, or chronic stress).
+
+This data suggests that improving air quality alone is unlikely to close the life expectancy gap between the rich and poor.
+
+---
+
+# **Discussion & Next Steps**
+
+This exploratory analysis reveals that the relationship between air quality and life expectancy at the county level is modest and varies by state and income group. This study is limited on several factors:
+
+- The health inequality data and AQI data may not perfectly align temporally.
+- County-level averages don't show within-county variation in both pollution exposure and health outcomes.
+- Confounders such as smoking rates, healthcare access, and occupational exposure are not controlled for here.
+
+Here are some recommendations for future work:
+
+- Incorporating **lung cancer mortality rates** from CDC's datasets to assess more direct health outcomes.
+- Collecting **multi-year AQI data** to examine air quality trends over time.
+- Analyzing other contributors to life expectancy gaps, such as healthcare, food, and recreational access.
+
+---
+
+*Analysis conducted using R. Data sourced from the U.S. Environmental Protection Agency and the Health Inequality Project.*
+
