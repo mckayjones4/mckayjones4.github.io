@@ -136,3 +136,28 @@ ggplot() +
   scale_color_viridis_c(option = "magma", name = "% Good Days") +
   coord_sf(xlim = c(-125, -66), ylim = c(24, 50), expand = FALSE) +
   theme_void()
+
+
+#statistical modeling
+
+mod1 <- glm(data = join_dat, le_agg_q1_F~good_days)
+mod2 <- glm(data = join_dat, le_agg_q1_F~good_days+state_name)
+summary(mod1)
+summary(mod2)
+
+#Does the effect of air quality on life expectancy differ by income quartile
+model_dat <- join_dat %>%
+  mutate(
+    le_q1 = (le_agg_q1_F + le_agg_q1_M) / 2,
+    le_q4 = (le_agg_q4_F + le_agg_q4_M) /2
+  ) %>%
+  pivot_longer(c(le_q1, le_q4), names_to = 'quartile', values_to = 'life_expectancy')
+
+mod1 <- lm(data = model_dat, life_expectancy~quartile)
+
+mod2 <- lm(data = model_dat, life_expectancy~good_days*quartile)
+
+summary(mod1)
+
+summary(mod2)
+
