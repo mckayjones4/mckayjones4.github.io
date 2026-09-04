@@ -1,449 +1,643 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>McKay Jones</title>
-  <meta content="McKay Jones, researcher, Bioinformatics" name="description">
-  <meta content="McKay Jones, bioinformatics, UVU, biology" name="keywords">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <!-- ===== SEO ===== -->
+  <title>McKay Jones | Bioinformatics &amp; Population Genetics</title>
+  <meta name="description" content="McKay Jones — undergraduate bioinformatics researcher at Utah Valley University conducting population genetics research at the Broad Institute. Projects in computational biology, molecular mimicry, and data analysis.">
+  <meta name="keywords" content="McKay Jones, bioinformatics, population genetics, Broad Institute, Utah Valley University, UVU, computational biology, molecular mimicry, genomics, research">
+  <meta name="author" content="McKay Jones">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://mckayjones4.github.io/">
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com" rel="preconnect">
-  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <!-- ===== Open Graph / social ===== -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="McKay Jones | Bioinformatics &amp; Population Genetics">
+  <meta property="og:description" content="Undergraduate bioinformatics researcher at UVU conducting population genetics research at the Broad Institute.">
+  <meta property="og:url" content="https://mckayjones4.github.io/">
+  <meta property="og:image" content="https://mckayjones4.github.io/images/my-profile-img.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="McKay Jones | Bioinformatics &amp; Population Genetics">
+  <meta name="twitter:description" content="Undergraduate bioinformatics researcher at UVU conducting population genetics research at the Broad Institute.">
+  <meta name="twitter:image" content="https://mckayjones4.github.io/images/my-profile-img.jpg">
 
-  <!-- Vendor CSS Files -->
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
-  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <!-- ===== Icons ===== -->
+  <link rel="icon" href="images/favicon.png">
+  <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
 
-  <!-- Main CSS File -->
-  <link href="assets/css/main.css" rel="stylesheet">
+  <!-- ===== Fonts &amp; icon set (CDN) ===== -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-  <!-- =======================================================
-  * Template Name: iPortfolio
-  * Template URL: https://bootstrapmade.com/iportfolio-bootstrap-portfolio-websites-template/
-  * Updated: Jun 29 2024 with Bootstrap v5.3.3
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
+  <!-- ===== Structured data (JSON-LD) ===== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "McKay Jones",
+    "url": "https://mckayjones4.github.io/",
+    "image": "https://mckayjones4.github.io/images/my-profile-img.jpg",
+    "email": "mailto:jonesmck@broadinstitute.org",
+    "jobTitle": "Bioinformatics Researcher",
+    "description": "Undergraduate bioinformatics researcher at Utah Valley University conducting population genetics research at the Broad Institute.",
+    "affiliation": [
+      { "@type": "CollegeOrUniversity", "name": "Utah Valley University" },
+      { "@type": "ResearchOrganization", "name": "Broad Institute of MIT and Harvard" }
+    ],
+    "knowsAbout": ["Bioinformatics", "Population Genetics", "Computational Biology", "Genomics"],
+    "sameAs": [
+      "https://www.linkedin.com/in/mckay-jones/",
+      "https://github.com/mckayjones4"
+    ]
+  }
+  </script>
+
+  <style>
+    :root {
+      --black:        #0D0D0F;
+      --black-soft:   #131316;
+      --black-card:   #1A1A1F;
+      --border:       #26262C;
+      --border-light: #34343C;
+      --blue:         #1E5FA8;
+      --blue-mid:     #2C7BD1;
+      --blue-text:    #5BA3E8;
+      --blue-glow:    rgba(43,123,209,0.28);
+      --grey-mid:     #6E7079;
+      --grey-light:   #A6A9B2;
+      --white:        #F3F4F7;
+      --off:          #D7D9DE;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--black);
+      color: var(--off);
+      font-size: 17px;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--blue-text); text-decoration: none; transition: color .15s; }
+    a:hover { color: #8fc3f5; }
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--black); }
+    ::-webkit-scrollbar-thumb { background: var(--blue); border-radius: 3px; }
+    img { max-width: 100%; display: block; }
+
+    /* scroll reveal */
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* NAV */
+    #topnav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      background: rgba(13,13,15,0.9); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      height: 68px; display: flex; align-items: center; padding: 0 2rem;
+    }
+    .nav-brand {
+      font-family: 'Fraunces', serif; font-size: 1.45rem; font-weight: 500;
+      color: var(--white); letter-spacing: .01em; flex-shrink: 0; margin-right: 1rem;
+    }
+    .nav-brand:hover { color: var(--white); }
+    .nav-center { display: flex; align-items: center; flex: 1; }
+    .nav-links { display: flex; align-items: center; list-style: none; }
+    .nav-links a {
+      font-size: .92rem; color: var(--grey-light); padding: .35rem .8rem;
+      border-radius: 4px; letter-spacing: .02em;
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-links a.active { color: var(--blue-text); }
+    .nav-socials { display: flex; align-items: center; flex-shrink: 0; margin-left: auto; }
+    .nav-socials a {
+      display: flex; align-items: center; justify-content: center;
+      width: 38px; height: 38px; color: var(--grey-mid); font-size: 1.1rem; border-radius: 4px;
+    }
+    .nav-socials a:hover { color: var(--white); }
+    .nav-toggle {
+      display: none; background: none; border: none; font-size: 1.5rem;
+      cursor: pointer; color: var(--white); margin-left: .25rem;
+    }
+    @media (max-width: 840px) {
+      .nav-center {
+        display: none; flex-direction: column; align-items: flex-start;
+        position: fixed; top: 68px; left: 0; right: 0; bottom: 0;
+        background: var(--black-soft); border-top: 1px solid var(--border);
+        padding: 1.5rem; overflow-y: auto;
+      }
+      .nav-center.open { display: flex; }
+      .nav-links { flex-direction: column; align-items: flex-start; width: 100%; }
+      .nav-links a { font-size: 1.15rem; padding: .6rem .3rem; }
+      .nav-toggle { display: block; }
+    }
+
+    /* SHARED */
+    section { padding: 5rem 0; }
+    .bg-alt { background: var(--black-soft); }
+    .inner { max-width: 1080px; margin: 0 auto; padding: 0 2rem; }
+    .s-label {
+      font-family: 'JetBrains Mono', monospace; font-size: .72rem;
+      letter-spacing: .2em; text-transform: uppercase; color: var(--blue-text); margin-bottom: .5rem;
+    }
+    .s-title {
+      font-family: 'Fraunces', serif; font-weight: 400;
+      font-size: clamp(2.1rem, 4vw, 3rem); color: var(--white); margin-bottom: .6rem; line-height: 1.1;
+    }
+    .s-rule { width: 40px; height: 2px; background: var(--blue); margin-bottom: 2.4rem; }
+
+    /* BUTTONS */
+    .btn {
+      display: inline-flex; align-items: center; gap: .45rem;
+      padding: .55rem 1.2rem; border-radius: 4px; font-size: .85rem; font-weight: 500;
+      transition: all .18s; cursor: pointer;
+    }
+    .btn-primary { background: var(--blue); color: #fff; border: 1px solid var(--blue); }
+    .btn-primary:hover { background: var(--blue-mid); color: #fff; border-color: var(--blue-mid); }
+    .btn-outline { border: 1px solid var(--border-light); color: var(--grey-light); background: transparent; }
+    .btn-outline:hover { border-color: var(--blue-mid); color: var(--white); }
+
+    /* HERO */
+    #home {
+      margin-top: 68px; min-height: calc(100vh - 68px);
+      display: flex; align-items: center; position: relative; overflow: hidden;
+    }
+    #home::before {
+      content: ''; position: absolute; inset: 0;
+      background-image:
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 60px 60px; opacity: .35; pointer-events: none;
+      mask-image: radial-gradient(ellipse 80% 60% at 30% 40%, #000 40%, transparent 100%);
+      -webkit-mask-image: radial-gradient(ellipse 80% 60% at 30% 40%, #000 40%, transparent 100%);
+    }
+    .hero-inner {
+      max-width: 1080px; margin: 0 auto; padding: 3.5rem 2rem;
+      display: grid; grid-template-columns: 1.65fr 1fr; gap: 3.5rem;
+      align-items: center; position: relative; z-index: 1;
+    }
+    @media (max-width: 760px) {
+      .hero-inner { grid-template-columns: 1fr; gap: 2.25rem; }
+      .hero-photo { max-width: 200px; order: -1; }
+    }
+    .hero-tag {
+      font-family: 'JetBrains Mono', monospace; font-size: .7rem;
+      letter-spacing: .18em; text-transform: uppercase; color: var(--blue-text);
+      margin-bottom: 1rem; display: flex; align-items: center; gap: .6rem;
+    }
+    .hero-tag::before { content: ''; width: 22px; height: 1px; background: var(--blue-text); }
+    .hero-name {
+      font-family: 'Fraunces', serif; font-weight: 300;
+      font-size: clamp(3.2rem, 7.5vw, 5.8rem); line-height: 1.03; color: var(--white); margin-bottom: .6rem;
+    }
+    .hero-name em { font-style: italic; color: var(--off); }
+    .hero-role {
+      font-family: 'JetBrains Mono', monospace; font-size: .72rem;
+      letter-spacing: .1em; text-transform: uppercase; color: var(--grey-mid); margin-bottom: 1.6rem;
+    }
+    .hero-desc {
+      font-size: .98rem; color: var(--grey-light); max-width: 510px;
+      margin-bottom: 2rem; line-height: 1.8; font-weight: 300;
+    }
+    .hero-desc strong { color: var(--off); font-weight: 500; }
+    .hero-btns { display: flex; gap: .65rem; flex-wrap: wrap; }
+    .hero-photo img {
+      width: 100%; max-width: 270px; border-radius: 4px; border: 1px solid var(--border);
+      filter: grayscale(15%) brightness(.92); box-shadow: 6px 6px 0 var(--blue);
+    }
+
+    /* ABOUT */
+    .about-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 3.5rem; align-items: start; }
+    @media (max-width: 760px) { .about-grid { grid-template-columns: 1fr; gap: 2rem; } }
+    .about-lead {
+      font-family: 'Fraunces', serif; font-size: 1.3rem; font-weight: 300;
+      color: var(--white); margin-bottom: 1.1rem; line-height: 1.6;
+    }
+    .about-body { font-size: 1rem; color: var(--grey-light); margin-bottom: 1rem; font-weight: 300; }
+    .about-body strong { color: var(--off); font-weight: 500; }
+    .aside-box { background: var(--black-card); border: 1px solid var(--border); border-radius: 6px; padding: 1.5rem; }
+    .aside-label {
+      font-family: 'JetBrains Mono', monospace; font-size: .64rem;
+      letter-spacing: .16em; text-transform: uppercase; color: var(--grey-mid); margin-bottom: 1.2rem;
+    }
+    .aside-row { display: flex; gap: .8rem; align-items: flex-start; margin-bottom: 1.1rem; font-size: .85rem; }
+    .aside-row:last-child { margin-bottom: 0; }
+    .aside-row i { color: var(--blue-text); flex-shrink: 0; margin-top: 3px; font-size: .9rem; }
+    .aside-main { color: var(--off); line-height: 1.45; }
+    .aside-sub { font-size: .76rem; color: var(--grey-mid); margin-top: .15rem; }
+    .chips { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: 1.4rem; }
+    .chip {
+      font-size: .78rem; padding: .25rem .7rem; background: var(--black-card);
+      border: 1px solid var(--border); border-radius: 100px; color: var(--grey-light);
+    }
+    .mono-h {
+      font-family: 'JetBrains Mono', monospace; font-size: .72rem; letter-spacing: .14em;
+      text-transform: uppercase; color: var(--blue-text); margin: 1.6rem 0 .3rem;
+    }
+
+    /* PROJECTS */
+    .proj-list { display: flex; flex-direction: column; gap: 1rem; }
+    .proj-card {
+      background: var(--black-card); border: 1px solid var(--border);
+      border-left: 2px solid var(--blue); border-radius: 6px;
+      padding: 1.5rem 1.7rem; transition: border-color .2s, transform .2s, box-shadow .2s;
+    }
+    .proj-card:hover { border-left-color: var(--blue-mid); transform: translateY(-2px); box-shadow: 0 8px 26px rgba(0,0,0,.45); }
+    .proj-head { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; flex-wrap: wrap; margin-bottom: .5rem; }
+    .proj-title { font-family: 'Fraunces', serif; font-size: 1.25rem; font-weight: 500; color: var(--white); line-height: 1.3; }
+    .proj-title a { color: var(--white); }
+    .proj-title a:hover { color: var(--blue-text); }
+    .proj-tag {
+      font-family: 'JetBrains Mono', monospace; font-size: .62rem; letter-spacing: .12em;
+      text-transform: uppercase; color: var(--grey-mid); white-space: nowrap;
+    }
+    .proj-body { font-size: .96rem; color: var(--grey-light); font-weight: 300; line-height: 1.65; }
+    .proj-link {
+      display: inline-flex; align-items: center; gap: .35rem; margin-top: .7rem;
+      font-family: 'JetBrains Mono', monospace; font-size: .72rem; letter-spacing: .05em;
+    }
+    .proj-cta { margin-top: 1.6rem; }
+
+    /* PORTFOLIO */
+    .pf-filters { display: flex; gap: .45rem; flex-wrap: wrap; margin-bottom: 1.6rem; }
+    .pf-btn {
+      font-family: 'JetBrains Mono', monospace; font-size: .68rem; letter-spacing: .06em;
+      padding: .3rem .8rem; border-radius: 4px; border: 1px solid var(--border);
+      background: transparent; color: var(--grey-mid); cursor: pointer; transition: all .15s;
+    }
+    .pf-btn.active, .pf-btn:hover { background: var(--blue); border-color: var(--blue); color: #fff; }
+    .pf-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: .7rem; }
+    .pf-item {
+      position: relative; border-radius: 4px; overflow: hidden; aspect-ratio: 4/3;
+      border: 1px solid var(--border); cursor: pointer;
+    }
+    .pf-item img { width: 100%; height: 100%; object-fit: cover; filter: brightness(.82) grayscale(8%); transition: filter .3s, transform .3s; }
+    .pf-item:hover img { filter: brightness(1); transform: scale(1.05); }
+    .pf-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,.75) 0%, transparent 55%);
+      display: flex; align-items: flex-end; padding: .7rem .8rem;
+      opacity: 0; transition: opacity .25s; pointer-events: none;
+    }
+    .pf-item:hover .pf-overlay { opacity: 1; }
+    .pf-overlay span { color: #fff; font-size: .78rem; font-weight: 500; line-height: 1.35; }
+
+    /* FOOTER */
+    footer {
+      background: var(--black); border-top: 1px solid var(--border);
+      padding: 2.75rem 2rem 2rem;
+    }
+    .foot-inner { max-width: 1080px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 1.5rem; align-items: center; justify-content: space-between; }
+    .foot-contact { display: flex; flex-wrap: wrap; gap: 1.5rem; align-items: center; }
+    .foot-contact a { display: inline-flex; align-items: center; gap: .45rem; color: var(--grey-light); font-size: .9rem; }
+    .foot-contact a:hover { color: var(--white); }
+    .foot-contact i { color: var(--blue-text); }
+    .foot-socials { display: flex; gap: .5rem; }
+    .foot-socials a {
+      width: 40px; height: 40px; background: var(--black-card); border: 1px solid var(--border);
+      border-radius: 5px; display: flex; align-items: center; justify-content: center;
+      color: var(--grey-mid); font-size: 1rem;
+    }
+    .foot-socials a:hover { background: var(--blue); border-color: var(--blue); color: #fff; }
+    .foot-copy { max-width: 1080px; margin: 1.75rem auto 0; padding-top: 1.5rem; border-top: 1px solid var(--border);
+      font-size: .74rem; color: var(--grey-mid); text-align: center; }
+
+    /* lightbox */
+    #lb { position: fixed; inset: 0; z-index: 2000; background: rgba(5,5,7,.92);
+      display: none; align-items: center; justify-content: center; padding: 2rem; }
+    #lb.open { display: flex; }
+    #lb img { max-width: 92vw; max-height: 86vh; border-radius: 4px; border: 1px solid var(--border); }
+    #lb .lb-cap { position: absolute; bottom: 1.5rem; left: 0; right: 0; text-align: center; color: var(--off); font-size: .85rem; }
+    #lb .lb-close { position: absolute; top: 1.25rem; right: 1.5rem; color: #fff; font-size: 2rem; cursor: pointer; line-height: 1; background: none; border: none; }
+  </style>
 </head>
 
-<body class="index-page">
-
-  <header id="header" class="header dark-background d-flex flex-column">
-    <i class="header-toggle d-xl-none bi bi-list"></i>
-
-    <div class="profile-img">
-      <img src="assets/img/my-profile-img.jpg" alt="McKay Jones profile photo" class="img-fluid rounded-circle">
-    </div>
-
-    <a href="index.html" class="logo d-flex align-items-center justify-content-center">
-      <!-- Uncomment the line below if you also wish to use an image logo -->
-      <!-- <img src="assets/img/logo.png" alt=""> -->
-      <h1 class="sitename">McKay Jones</h1>
-    </a>
-
-    <div class="social-links text-center">
-      <a href="https://www.linkedin.com/in/mckay-jones/" class="linkedin"><i class="bi bi-linkedin"></i></a>
-      <a href="https://github.com/mckayjones4" class="github"><i class="bi bi-github"></i></a>
-    </div>
-
-    <nav id="navmenu" class="navmenu">
-      <ul>
-        <li><a href="#hero" class="active"><i class="bi bi-house navicon"></i>Home</a></li>
-        <li class="dropdown"><a href="#about"><i class="bi bi-menu-button navicon"></i> <span>About</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-          <ul>
-            <li><a href="#about">About Me</a></li>
-            <li></li><a href="#passions">Subjects of Interest</a></li>
-            </ul>
-        <li><a href="#resume"><i class="bi bi-file-earmark-text navicon"></i> Resume</a></li>
-        <li><a href="#portfolio"><i class="bi bi-images navicon"></i> Portfolio</a></li>
-        <li><a href="#contact"><i class="bi bi-envelope navicon"></i> Contact</a></li>
+<body>
+  <!-- NAV -->
+  <nav id="topnav">
+    <a href="#home" class="nav-brand">McKay Jones</a>
+    <div class="nav-center" id="navCenter">
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="jones_cv.pdf" target="_blank" rel="noopener">CV</a></li>
       </ul>
-    </nav>
+    </div>
+    <div class="nav-socials">
+      <a href="https://www.linkedin.com/in/mckay-jones/" target="_blank" rel="noopener" title="LinkedIn" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+      <a href="https://github.com/mckayjones4" target="_blank" rel="noopener" title="GitHub" aria-label="GitHub"><i class="bi bi-github"></i></a>
+    </div>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu"><i class="bi bi-list"></i></button>
+  </nav>
 
+  <!-- HERO -->
+  <header id="home">
+    <div class="hero-inner">
+      <div>
+        <p class="hero-tag">Utah Valley University · Broad Institute</p>
+        <h1 class="hero-name">McKay<br><em>Jones</em></h1>
+        <p class="hero-role">Bioinformatics · Population Genetics</p>
+        <p class="hero-desc">
+          I'm an undergraduate researcher studying <strong>bioinformatics</strong> at Utah Valley University,
+          currently conducting <strong>population genetics</strong> research at the
+          <strong>Broad Institute of MIT and Harvard</strong>. My work sits at the intersection of
+          computational biology, genomics, and data-driven approaches to human health.
+        </p>
+        <div class="hero-btns">
+          <a href="#projects" class="btn btn-primary">View Projects</a>
+          <a href="jones_cv.pdf" target="_blank" rel="noopener" class="btn btn-outline"><i class="bi bi-file-earmark-text"></i> CV</a>
+          <a href="https://github.com/mckayjones4" target="_blank" rel="noopener" class="btn btn-outline"><i class="bi bi-github"></i> GitHub</a>
+        </div>
+      </div>
+      <div class="hero-photo">
+        <img src="images/my-profile-img.jpg" alt="Portrait of McKay Jones" width="270" height="338">
+      </div>
+    </div>
   </header>
 
-  <main class="main">
-
-    <!-- Hero Section -->
-    <section id="hero" class="hero section dark-background">
-
-      <img src="assets/img/Main_pic.PNG" alt="" data-aos="fade-in" class="">
-
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
-        <h2>McKay Jones</h2>
-          <p>I'm a <span class="typed" data-typed-items="Biologist, Researcher, Systems Thinker, Educator">Student</span><span class="typed-cursor typed-cursor--blink" aria-hidden="true"></span><span class="typed-cursor typed-cursor--blink" aria-hidden="true"></span></p>
+  <!-- ABOUT -->
+  <section id="about" class="bg-alt">
+    <div class="inner">
+      <div class="reveal">
+        <p class="s-label">About</p>
+        <h2 class="s-title">Short Bio</h2>
+        <div class="s-rule"></div>
       </div>
-
-    </section><!-- /Hero Section -->
-
-    <!-- About Section -->
-    <section id="about" class="about section">
-
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up" data-aos-delay="100">
-        <h2>About</h2>
-      </div>
-
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
-
-        <div class="row gy-4 justify-content-center">
-          <div class="col-lg-4">
-            <img src="assets/img/my-profile-img.jpg" class="img-fluid" alt="">
+      <div class="about-grid reveal">
+        <div>
+          <p class="about-lead">
+            An undergraduate researcher drawn to the questions at the boundary of biology,
+            computation, and data.
+          </p>
+          <p class="about-body">
+            I'm a junior at <strong>Utah Valley University</strong> pursuing a degree in
+            <strong>Bioinformatics</strong> alongside coursework in Political Science and Music,
+            graduating with honors in <strong>May 2027</strong>. I currently conduct
+            <strong>population genetics</strong> research at the <strong>Broad Institute of MIT and Harvard</strong>.
+          </p>
+          <p class="about-body">
+            Previously, in Dr. Julio Facelli's lab at the University of Utah, I investigated the
+            pathogenesis of autoimmune diseases — including type 1 diabetes mellitus — through
+            molecular mimicry. Across these projects I build reproducible computational pipelines
+            and enjoy translating messy biological data into clear, defensible answers.
+          </p>
+          <p class="mono-h">Interests</p>
+          <div class="chips">
+            <span class="chip">Population Genetics</span>
+            <span class="chip">Computational Biology</span>
+            <span class="chip">Genomics</span>
+            <span class="chip">Data Analysis</span>
+            <span class="chip">Science Policy</span>
+            <span class="chip">Music</span>
           </div>
-          <div class="col-lg-8 content">
-            <h2>Student &amp; Researcher</h2>
-            <p class="py-3">
-              I am a junior undergraduate studying Bioinformatics, Political Science, and Music at Utah Valley University. I'm graduating in May 2027 with honors, and hope to continue working alongside scientific innovation.
-            </p>
+        </div>
+        <div>
+          <div class="aside-box">
+            <p class="aside-label">At a glance</p>
+            <div class="aside-row">
+              <i class="bi bi-diagram-3"></i>
+              <div>
+                <p class="aside-main">Population Genetics Research</p>
+                <p class="aside-sub">Broad Institute of MIT &amp; Harvard</p>
+              </div>
+            </div>
+            <div class="aside-row">
+              <i class="bi bi-mortarboard"></i>
+              <div>
+                <p class="aside-main">B.S. Bioinformatics (Honors)</p>
+                <p class="aside-sub">Utah Valley University · Expected May 2027</p>
+              </div>
+            </div>
+            <div class="aside-row">
+              <i class="bi bi-search"></i>
+              <div>
+                <p class="aside-main">Molecular Mimicry &amp; Autoimmunity</p>
+                <p class="aside-sub">Facelli Lab · University of Utah</p>
+              </div>
+            </div>
+            <div class="aside-row">
+              <i class="bi bi-envelope"></i>
+              <div>
+                <p class="aside-main"><a href="mailto:jonesmck@broadinstitute.org">jonesmck@broadinstitute.org</a></p>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-
-    </section><!-- /About Section -->
-
-    <!-- Project Section -->
-    <section id="projects" class="skills section light-background">
-
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <h2>Projects</h2>
-        <p>Here are some projects I've had the honor of contributing to.</p>
-
-      </div><!-- End Section Title -->
-
-      <div class="container">
-
-        <div class="container line" data-aos="fade-up" data-aos-delay="100">
-          <h5><a href="./BIOL3100_Project/Final_Project.html">BIOL3100 Final Project</a></h5>
-          <p>This project investigates the relationships between air quality and life expectancy across the United States.</p>
-        </div>
-
-        <div class="container line" data-aos="fade-up" data-aos-delay="200">
-          <h5>Molecular Mimicry and Autoimmunity</h5>
-          <p>In Dr. Julio Facelli's lab, I investigate the pathogenesis of autoimmune diseases, including type 1 diabetes mellitus, through molecular mimicry.</p>
-        </div>
-
-        <div class="container line" data-aos="fade-up" data-aos-delay="300">
-          <h5><a href="./Supplemental_Instruction/Final_review.html">Supplemental Instruction Resources</a></h5>
-          <p>Provided are resources for students taking General Chemistry I at UVU.</p>
-        </div>
-
-      </div>
-
-    </section><!-- /Project Section -->
-
-    <!-- Resume Section -->
-    <section id="resume" class="resume section">
-
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <h2>Resume</h2>
-        <p>Click here for my updated <a href="jones_cv.pdf">CV.</a></h5></p>
-      </div><!-- End Section Title -->
-
-      <div class="container">
-
-        <div class="row">
-
-          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-            <h3 class="resume-title">Summary</h3>
-
-            <div class="resume-item pb-0">
-              <h4>McKay Jones</h4>
-              <p><em>Innovative and driven Bioinformatics student.</em></p>
-              <ul>
-                <li>Portland par 127, Orlando, FL</li>
-                <li>(123) 456-7891</li>
-                <li>alice.barkley@example.com</li>
-              </ul>
-            </div><!-- Edn Resume Item -->
-
-            <h3 class="resume-title">Education</h3>
-            <div class="resume-item">
-              <h4>Master of Fine Arts &amp; Graphic Design</h4>
-              <h5>2015 - 2016</h5>
-              <p><em>Rochester Institute of Technology, Rochester, NY</em></p>
-              <p>Qui deserunt veniam. Et sed aliquam labore tempore sed quisquam iusto autem sit. Ea vero voluptatum qui ut dignissimos deleniti nerada porti sand markend</p>
-            </div><!-- Edn Resume Item -->
-
-            <div class="resume-item">
-              <h4>Bachelor of Fine Arts &amp; Graphic Design</h4>
-              <h5>2010 - 2014</h5>
-              <p><em>Rochester Institute of Technology, Rochester, NY</em></p>
-              <p>Quia nobis sequi est occaecati aut. Repudiandae et iusto quae reiciendis et quis Eius vel ratione eius unde vitae rerum voluptates asperiores voluptatem Earum molestiae consequatur neque etlon sader mart dila</p>
-            </div><!-- Edn Resume Item -->
-
-          </div>
-
-          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
-            <h3 class="resume-title">Professional Experience</h3>
-            <div class="resume-item">
-              <h4>Senior graphic design specialist</h4>
-              <h5>2019 - Present</h5>
-              <p><em>Experion, New York, NY </em></p>
-              <ul>
-                <li>Lead in the design, development, and implementation of the graphic, layout, and production communication materials</li>
-                <li>Delegate tasks to the 7 members of the design team and provide counsel on all aspects of the project. </li>
-                <li>Supervise the assessment of all graphic materials in order to ensure quality and accuracy of the design</li>
-                <li>Oversee the efficient use of production project budgets ranging from $2,000 - $25,000</li>
-              </ul>
-            </div><!-- Edn Resume Item -->
-
-            <div class="resume-item">
-              <h4>Graphic design specialist</h4>
-              <h5>2017 - 2018</h5>
-              <p><em>Stepping Stone Advertising, New York, NY</em></p>
-              <ul>
-                <li>Developed numerous marketing programs (logos, brochures,infographics, presentations, and advertisements).</li>
-                <li>Managed up to 5 projects or tasks at a given time while under pressure</li>
-                <li>Recommended and consulted with clients on the most appropriate graphic design</li>
-                <li>Created 4+ design presentations and proposals a month for clients and account managers</li>
-              </ul>
-            </div><!-- Edn Resume Item -->
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </section><!-- /Resume Section -->
-
-    <!-- Portfolio Section -->
-    <section id="portfolio" class="portfolio section light-background">
-
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <h2>Portfolio</h2>
-        <p></p>
-      </div><!-- End Section Title -->
-
-      <div class="container">
-
-        <div class="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
-
-          <ul class="portfolio-filters isotope-filters" data-aos="fade-up" data-aos-delay="100">
-            <li data-filter="*" class="filter-active">All</li>
-            <li data-filter=".filter-presentations">Presentations</li>
-            <li data-filter=".filter-leadership">Leadership</li>
-            <li data-filter=".filter-research">Research</li>
-          </ul><!-- End Portfolio Filters -->
-
-          <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
-
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-presentations">
-              <div class="portfolio-content h-100">
-                <img src="assets/img/portfolio/MTS_pic.jpg" class="img-fluid" alt="">
-                <div class="portfolio-info">
-                  <h4>MTS Global Final</h4>
-                  <p>Presenting at the Map the System Global Final at the University of Oxford, UK.</p>
-                  <a href="assets/img/portfolio/MTS_pic.jpg" title="Map the System" data-gallery="portfolio-gallery-presentation" class="bi bi-zoom-in"></i></a>
-                  <a href="https://www.skollcentre.org/map-system" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-                </div>
-              </div>
-            </div><!-- End Portfolio Item -->
-
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-presentations">
-              <div class="portfolio-content h-100">
-                <img src="assets/img/portfolio/SPUR_mckay.jpg" class="img-fluid" alt="">
-                <div class="portfolio-info">
-                  <h4>SPUR 2025</h4>
-                  <p>Poster presentation for the University of Utah's Department of Biomedical Informatics</p>
-                  <a href="assets/img/portfolio/SPUR_mckay.jpg" title="SPUR 2025" data-gallery="portfolio-gallery-presentations" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                  <a href="https://our.utah.edu/urs/structural-homology-of-hhv-6-epitopes-as-candidates-for-molecular-mimicry-triggers-of-type-one-diabetes-mellitus-onset/" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-                </div>
-              </div>
-            </div><!-- End Portfolio Item -->
-
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-leadership">
-              <div class="portfolio-content h-100">
-                <img src="assets/img/portfolio/Station1_group.PNG" class="img-fluid" alt="">
-                <div class="portfolio-info">
-                  <h4>Station1</h4>
-                  <p>The Station1 Frontiers Scholars 2025 Cohort</p>
-                  <a href="assets/img/portfolio/Station1_group.PNG" title="Station1" data-gallery="portfolio-gallery-leadership" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                  <a href="https://www.station1.org/" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-                </div>
-              </div>
-            </div><!-- End Portfolio Item -->
-
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-leadership">
-              <div class="portfolio-content h-100">
-                <img src="assets/img/portfolio/UServe_event.jpg" class="img-fluid" alt="">
-                <div class="portfolio-info">
-                  <h4>CCEC</h4>
-                  <p>Serving as a College Community Engagement Councilmember for the State of Utah from 2024-2026.</p>
-                  <a href="assets/img/portfolio/UServe_event.jpg" title="College Community Engagement Council" data-gallery="portfolio-gallery-book" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                  <a href="https://userve.utah.gov/ccec/" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-                </div>
-              </div>
-            </div><!-- End Portfolio Item -->
-
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-leadership">
-              <div class="portfolio-content h-100">
-                <img src="assets/img/portfolio/EJ_Panel.png" class="img-fluid" alt="">
-                <div class="portfolio-info">
-                  <h4>Environmental Panel</h4>
-                  <p>Hosting and moderating an environmental-themed panel at UVU</p>
-                  <a href="assets/img/portfolio/EJ_Panel.png" title="EJ Panel" data-gallery="portfolio-gallery-leadership" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                  <a href="https://www.instagram.com/p/DHcqKLDM_T3/?img_index=7" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-                </div>
-              </div>
-            </div><!-- End Portfolio Item -->
-
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-presentations">
-              <div class="portfolio-content h-100">
-                <img src="assets/img/portfolio/MTS_group.jpg" class="img-fluid" alt="">
-                <div class="portfolio-info">
-                  <h4>MTS</h4>
-                  <p>The Map the System Global Final at the University of Oxford, UK.</p>
-                  <a href="assets/img/portfolio/MTS_group.jpg" title="Map the System Group Picture" data-gallery="portfolio-gallery-presentation" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                  <a href="portfolio-details.html" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-                </div>
-              </div>
-            </div><!-- End Portfolio Item -->
-
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-leadership">
-              <div class="portfolio-content h-100">
-                <img src="assets/img/portfolio/WC_tutor1.jpg" class="img-fluid" alt="">
-                <div class="portfolio-info">
-                  <h4>Writing Center</h4>
-                  <p>Working as a Writing Consultant at UVU's Writing Center.</p>
-                  <a href="assets/img/portfolio/WC_tutor1.jpg" title="Writing Center" data-gallery="portfolio-gallery-leadership" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                  <a href="https://www.uvu.edu/writingcenter/" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-                </div>
-              </div>
-            </div><!-- End Portfolio Item -->
-
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-presentations">
-              <div class="portfolio-content h-100">
-                <img src="assets/img/portfolio/UN_group.JPG" class="img-fluid" alt="">
-                <div class="portfolio-info">
-                  <h4>United Nations</h4>
-                  <p>Attending the 69th Commission on the Status of Women at the United Nations</p>
-                  <a href="assets/img/portfolio/UN_group.JPG" title="United Nations" data-gallery="portfolio-gallery-branding" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                  <a href="https://press.un.org/en/highlights/csw69" title="More Details" class="details-link"><i class="bi bi-link-45deg"></i></a>
-                </div>
-              </div>
-            </div><!-- End Portfolio Item -->
-
-          </div><!-- End Portfolio Container -->
-
-        </div>
-
-      </div>
-
-    </section><!-- /Portfolio Section -->
-
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact section">
-
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <h2>Contact Me</h2>
-      </div><!-- End Section Title -->
-
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
-
-        <div class="row gy-4">
-
-          <div class="col-lg-5">
-
-            <div class="info-wrap">
-
-              <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="200">
-                <i class="bi bi-geo-alt flex-shrink-0"></i>
-                <div>
-                  <h3>Address</h3>
-                  <p>800 W. University Parkway, Orem, UT 84059</p>
-                </div>
-              </div><!-- End Info Item -->
-
-              <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="400">
-                <i class="bi bi-envelope flex-shrink-0"></i>
-                <div>
-                  <h3>Email</h3>
-                  <p><a href="mailto:jonesmck006@gmail.com">jonesmck006@gmail.com</a></p>
-                </div>
-              </div><!-- End Info Item -->
-
-              <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="500">
-                <i class="bi bi-linkedin flex-shrink-0"></i>
-                <div>
-                  <h3>LinkedIn</h3>
-                  <p><a href="https://www.linkedin.com/in/mckay-jones/" target="_blank">linkedin.com/in/mckay-jones</a></p>
-                </div>
-              </div><!-- End Info Item -->
-
-              <div class="info-item d-flex" data-aos="fade-up" data-aos-delay="600">
-                <i class="bi bi-github flex-shrink-0"></i>
-                <div>
-                  <h3>GitHub</h3>
-                  <p><a href="https://github.com/mckayjones4" target="_blank">github.com/mckayjones4</a></p>
-                </div>
-              </div><!-- End Info Item -->
-
-            </div><!-- End Info Wrap -->
-
-          </div><!-- End col-lg-5 -->
-
-        </div><!-- End row -->
-
-      </div><!-- End container -->
-    
-    </section><!-- /Contact Section -->
-
-  </main>
-
-  <footer id="footer" class="footer position-relative light-background">
-
-    <div class="container">
-      <div class="copyright text-center ">
-        <p>© <span>Copyright</span> <strong class="px-1 sitename">McKay Jones</strong> <span>All Rights Reserved</span></p>
-      </div>
-      <div class="credits">
-        <!-- All the links in the footer should remain intact. -->
-        <!-- You can delete the links only if you've purchased the pro version. -->
-        <!-- Licensing information: https://bootstrapmade.com/license/ -->
-        <!-- Purchase the pro version with working PHP/AJAX contact form: [buy-url] -->
-        Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a> | <a href="https://bootstrapmade.com/tools/">DevTools</a>
       </div>
     </div>
+  </section>
 
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="inner">
+      <div class="reveal">
+        <p class="s-label">Selected Work</p>
+        <h2 class="s-title">Projects</h2>
+        <div class="s-rule"></div>
+      </div>
+      <div class="proj-list reveal">
+
+        <div class="proj-card">
+          <div class="proj-head">
+            <h3 class="proj-title"><a href="./BIOL3100_Project/Final_Project.html">BIOL 3100 Final Project</a></h3>
+            <span class="proj-tag">Data Analysis</span>
+          </div>
+          <p class="proj-body">
+            An investigation into the relationship between air quality and life expectancy across the
+            United States, combining public health and environmental datasets into a reproducible analysis.
+          </p>
+          <a href="./BIOL3100_Project/Final_Project.html" class="proj-link">View project <i class="bi bi-arrow-right-short"></i></a>
+        </div>
+
+        <div class="proj-card">
+          <div class="proj-head">
+            <h3 class="proj-title">Molecular Mimicry &amp; Autoimmunity</h3>
+            <span class="proj-tag">Research · Facelli Lab</span>
+          </div>
+          <p class="proj-body">
+            In Dr. Julio Facelli's lab at the University of Utah, I study the pathogenesis of autoimmune
+            diseases — including type 1 diabetes mellitus — through molecular mimicry, examining structural
+            homology between viral epitopes and human proteins as candidate disease triggers.
+          </p>
+        </div>
+
+        <div class="proj-card">
+          <div class="proj-head">
+            <h3 class="proj-title"><a href="./Supplemental_Instruction/Final_review.html">Supplemental Instruction Resources</a></h3>
+            <span class="proj-tag">Teaching</span>
+          </div>
+          <p class="proj-body">
+            A set of study resources I built for students taking General Chemistry I at UVU, distilling
+            core concepts into a focused, review-ready format.
+          </p>
+          <a href="./Supplemental_Instruction/Final_review.html" class="proj-link">Open resources <i class="bi bi-arrow-right-short"></i></a>
+        </div>
+
+      </div>
+      <div class="proj-cta reveal">
+        <a href="https://github.com/mckayjones4" target="_blank" rel="noopener" class="btn btn-outline">
+          <i class="bi bi-github"></i> More on GitHub
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PORTFOLIO -->
+  <section id="portfolio" class="bg-alt">
+    <div class="inner">
+      <div class="reveal">
+        <p class="s-label">Presentations · Leadership · Research</p>
+        <h2 class="s-title">Portfolio</h2>
+        <div class="s-rule"></div>
+      </div>
+      <div class="pf-filters reveal">
+        <button class="pf-btn active" data-filter="all">All</button>
+        <button class="pf-btn" data-filter="presentations">Presentations</button>
+        <button class="pf-btn" data-filter="research">Research</button>
+        <button class="pf-btn" data-filter="leadership">Leadership</button>
+      </div>
+      <div class="pf-grid reveal">
+
+        <div class="pf-item" data-cat="presentations" data-cap="Map the System Global Final — University of Oxford, UK">
+          <img src="images/portfolio/MTS_pic.jpg" alt="McKay Jones presenting at the Map the System Global Final at the University of Oxford">
+          <div class="pf-overlay"><span>MTS Global Final — Oxford</span></div>
+        </div>
+
+        <div class="pf-item" data-cat="research presentations" data-cap="SPUR 2025 poster — University of Utah, Department of Biomedical Informatics">
+          <img src="images/portfolio/SPUR_mckay.jpg" alt="McKay Jones with SPUR 2025 research poster on molecular mimicry">
+          <div class="pf-overlay"><span>SPUR 2025 Poster</span></div>
+        </div>
+
+        <div class="pf-item" data-cat="leadership" data-cap="Station1 Frontiers Scholars — 2025 Cohort">
+          <img src="images/portfolio/Station1_group.PNG" alt="Station1 Frontiers Scholars 2025 cohort group photo">
+          <div class="pf-overlay"><span>Station1 Frontiers Scholars</span></div>
+        </div>
+
+        <div class="pf-item" data-cat="leadership" data-cap="College Community Engagement Council (CCEC), State of Utah, 2024–2026">
+          <img src="images/portfolio/UServe_event.jpg" alt="McKay Jones at a College Community Engagement Council service event">
+          <div class="pf-overlay"><span>CCEC — State of Utah</span></div>
+        </div>
+
+        <div class="pf-item" data-cat="leadership" data-cap="Hosting and moderating an environmental-themed panel at UVU">
+          <img src="images/portfolio/EJ_Panel.png" alt="McKay Jones moderating an environmental panel at Utah Valley University">
+          <div class="pf-overlay"><span>Environmental Panel — UVU</span></div>
+        </div>
+
+        <div class="pf-item" data-cat="presentations" data-cap="Map the System Global Final — team at the University of Oxford, UK">
+          <img src="images/portfolio/MTS_group.jpg" alt="Map the System Global Final team photo at the University of Oxford">
+          <div class="pf-overlay"><span>Map the System — Team</span></div>
+        </div>
+
+        <div class="pf-item" data-cat="leadership" data-cap="Writing Consultant at UVU's Writing Center">
+          <img src="images/portfolio/WC_tutor1.jpg" alt="McKay Jones working as a writing consultant at the UVU Writing Center">
+          <div class="pf-overlay"><span>UVU Writing Center</span></div>
+        </div>
+
+        <div class="pf-item" data-cat="leadership" data-cap="69th Commission on the Status of Women at the United Nations">
+          <img src="images/portfolio/UN_group.JPG" alt="Attending the 69th Commission on the Status of Women at the United Nations">
+          <div class="pf-overlay"><span>UN CSW69</span></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER / CONTACT -->
+  <footer id="contact">
+    <div class="foot-inner">
+      <div class="foot-contact">
+        <a href="mailto:jonesmck@broadinstitute.org"><i class="bi bi-envelope"></i> jonesmck@broadinstitute.org</a>
+        <a href="https://www.linkedin.com/in/mckay-jones/" target="_blank" rel="noopener"><i class="bi bi-linkedin"></i> LinkedIn</a>
+        <a href="https://github.com/mckayjones4" target="_blank" rel="noopener"><i class="bi bi-github"></i> GitHub</a>
+      </div>
+      <div class="foot-socials">
+        <a href="https://www.linkedin.com/in/mckay-jones/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>
+        <a href="https://github.com/mckayjones4" target="_blank" rel="noopener" aria-label="GitHub"><i class="bi bi-github"></i></a>
+      </div>
+    </div>
+    <div class="foot-copy">
+      © <span id="year"></span> McKay Jones · Bioinformatics &amp; Population Genetics
+    </div>
   </footer>
 
-  <!-- Scroll Top -->
-  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  <!-- LIGHTBOX -->
+  <div id="lb" role="dialog" aria-modal="true">
+    <button class="lb-close" id="lbClose" aria-label="Close">&times;</button>
+    <img id="lbImg" src="" alt="">
+    <p class="lb-cap" id="lbCap"></p>
+  </div>
 
-  <!-- Preloader -->
-  <div id="preloader"></div>
+  <script>
+    // year
+    document.getElementById('year').textContent = new Date().getFullYear();
 
-  <!-- Vendor JS Files -->
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
-  <script src="assets/vendor/aos/aos.js"></script>
-  <script src="assets/vendor/typed.js/typed.umd.js"></script>
-  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
-  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+    // mobile nav
+    const toggle = document.getElementById('navToggle');
+    const navCenter = document.getElementById('navCenter');
+    toggle.addEventListener('click', () => {
+      navCenter.classList.toggle('open');
+      toggle.querySelector('i').className = navCenter.classList.contains('open') ? 'bi bi-x' : 'bi bi-list';
+    });
+    document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => {
+      navCenter.classList.remove('open');
+      toggle.querySelector('i').className = 'bi bi-list';
+    }));
 
-  <!-- Main JS File -->
-  <script src="assets/js/main.js"></script>
+    // scroll reveal
+    const revealObs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.reveal').forEach(el => revealObs.observe(el));
 
+    // active nav highlight
+    const navAs = document.querySelectorAll('.nav-links a[href^="#"]');
+    document.querySelectorAll('section[id], header[id]').forEach(s => {
+      new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            navAs.forEach(a => a.classList.remove('active'));
+            const hit = document.querySelector('.nav-links a[href="#' + e.target.id + '"]');
+            if (hit) hit.classList.add('active');
+          }
+        });
+      }, { rootMargin: '-50% 0px -50% 0px' }).observe(s);
+    });
+
+    // portfolio filter
+    document.querySelectorAll('.pf-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.pf-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const f = btn.dataset.filter;
+        document.querySelectorAll('.pf-item').forEach(item => {
+          const cats = item.dataset.cat.split(' ');
+          item.style.display = (f === 'all' || cats.includes(f)) ? 'block' : 'none';
+        });
+      });
+    });
+
+    // lightbox
+    const lb = document.getElementById('lb'),
+          lbImg = document.getElementById('lbImg'),
+          lbCap = document.getElementById('lbCap');
+    document.querySelectorAll('.pf-item').forEach(item => {
+      item.addEventListener('click', () => {
+        const img = item.querySelector('img');
+        lbImg.src = img.src; lbImg.alt = img.alt;
+        lbCap.textContent = item.dataset.cap || '';
+        lb.classList.add('open');
+      });
+    });
+    function closeLb(){ lb.classList.remove('open'); lbImg.src = ''; }
+    document.getElementById('lbClose').addEventListener('click', closeLb);
+    lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLb(); });
+  </script>
 </body>
-
 </html>
