@@ -286,6 +286,32 @@
     .pf-item:hover .pf-overlay { opacity: 1; }
     .pf-overlay span { color: #fff; font-size: .78rem; font-weight: 500; line-height: 1.35; }
 
+    /* ABOUT research list */
+    .rlist { list-style: none; margin: .2rem 0 0; padding: 0; }
+    .rlist li {
+      position: relative; padding-left: 1.2rem; margin-bottom: .5rem;
+      font-size: .96rem; color: var(--grey-light); font-weight: 300; line-height: 1.5;
+    }
+    .rlist li::before { content: ''; position: absolute; left: 0; top: .62em; width: 6px; height: 6px; background: var(--blue); border-radius: 50%; }
+
+    /* HONORS / LEADERSHIP */
+    .hl-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2.75rem; }
+    @media (max-width: 760px) { .hl-grid { grid-template-columns: 1fr; gap: 2rem; } }
+    .hl-col-label {
+      font-family: 'JetBrains Mono', monospace; font-size: .72rem; letter-spacing: .16em;
+      text-transform: uppercase; color: var(--blue-text); margin-bottom: 1rem;
+      padding-bottom: .55rem; border-bottom: 1px solid var(--border);
+    }
+    .hl-item {
+      display: flex; justify-content: space-between; gap: 1rem;
+      padding: .7rem 0; border-bottom: 1px solid var(--border); font-size: .92rem;
+    }
+    .hl-item:last-child { border-bottom: none; }
+    .hl-name { color: var(--off); line-height: 1.4; }
+    .hl-name .hl-sub { display: block; font-size: .78rem; color: var(--grey-mid); margin-top: .12rem; }
+    .hl-badge { color: var(--blue-text); font-weight: 500; }
+    .hl-year { font-family: 'JetBrains Mono', monospace; font-size: .7rem; color: var(--grey-mid); white-space: nowrap; flex-shrink: 0; padding-top: .15rem; }
+
     /* FOOTER */
     footer {
       background: var(--black); border-top: 1px solid var(--border);
@@ -325,6 +351,7 @@
         <li><a href="#home">Home</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="#projects">Projects</a></li>
+        <li><a href="#awards">Honors</a></li>
         <li><a href="#portfolio">Portfolio</a></li>
         <li><a href="jones_cv.pdf" target="_blank" rel="noopener">CV</a></li>
       </ul>
@@ -346,8 +373,8 @@
         <p class="hero-desc">
           I'm an undergraduate researcher studying <strong>bioinformatics</strong> at Utah Valley University,
           currently conducting <strong>population genetics</strong> research at the
-          <strong>Broad Institute of MIT and Harvard</strong>. I hope to expand my technical research skills to
-          could advance more equitable, sustainable societies.
+          <strong>Broad Institute of MIT and Harvard</strong>. I use data and science to understand
+          and reduce <strong>health inequities</strong>.
         </p>
         <div class="hero-btns">
           <a href="#projects" class="btn btn-primary">View Projects</a>
@@ -372,21 +399,23 @@
       <div class="about-grid reveal">
         <div>
           <p class="about-lead">
-            An undergraduate researcher drawn to the questions involving biology,
-            data, and systems thinking.
+            I use data and science to understand and reduce health inequities — the thread that runs
+            through my work in genetics, public health, and service.
           </p>
           <p class="about-body">
-            I'm a junior at <strong>Utah Valley University</strong> pursuing a degree in
+            I'm a senior at <strong>Utah Valley University</strong> pursuing a degree in
             <strong>Bioinformatics</strong> with minors in Political Science and Music,
             graduating with honors in <strong>May 2027</strong>. I currently conduct
             <strong>population genetics</strong> research at the <strong>Broad Institute of MIT and Harvard</strong>.
           </p>
-          <p class="about-body">
-            Previous research projects include investigating molecular mimicry’s role in the pathogenesis of autoimmune diseases,
-            health inequalities from Salt Lake City’s poor air quality, environmental impacts of hyperscale data centers,
-            phylogenetic relationships within the requiem shark family (Carcharhinidae), and treatment gaps for Latinx individuals with Alzheimer's disease.
-
-          </p>
+          <p class="mono-h">Past research has spanned</p>
+          <ul class="rlist">
+            <li>Molecular mimicry in the pathogenesis of autoimmune disease</li>
+            <li>Health inequities driven by Salt Lake City's air quality</li>
+            <li>Environmental impacts of hyperscale data centers</li>
+            <li>Phylogenetics of the requiem shark family (<em>Carcharhinidae</em>)</li>
+            <li>Treatment gaps for Latinx individuals with Alzheimer's disease</li>
+          </ul>
           <p class="mono-h">Interests</p>
           <div class="chips">
             <span class="chip">Population Genetics</span>
@@ -445,14 +474,15 @@
 
         <div class="proj-card">
           <div class="proj-head">
-            <h3 class="proj-title"><a href="./BIOL3100_Project/Final_Project.html">BIOL 3100 Final Project</a></h3>
-            <span class="proj-tag">Data Analysis</span>
+            <h3 class="proj-title">Polygenic Risk Scores for Psychosis</h3>
+            <span class="proj-tag">Research · Martin Lab, Broad Institute</span>
           </div>
           <p class="proj-body">
-            An investigation into the relationship between air quality and life expectancy across the
-            United States, combining public health and environmental datasets.
+            At the Broad Institute, in <a href="https://armartinlab.com/" target="_blank" rel="noopener">Dr. Alicia Martin's lab</a>, I build genetic prediction models to help
+            identify people at high risk for schizophrenia and other psychiatric disorders by reading thousands
+            of small genetic signals together. I develop population-genetics pipelines and apply high-performance statistical
+            modeling across millions of genetic variants.
           </p>
-          <a href="./BIOL3100_Project/Final_Project.html" class="proj-link">View project <i class="bi bi-arrow-right-short"></i></a>
         </div>
 
         <div class="proj-card">
@@ -461,10 +491,25 @@
             <span class="proj-tag">Research · Facelli Lab</span>
           </div>
           <p class="proj-body">
-            In Dr. Julio Facelli's lab at the University of Utah, I study the pathogenesis of autoimmune
-            diseases — including type 1 diabetes mellitus — through molecular mimicry, examining structural
-            homology between viral epitopes and human proteins as candidate disease triggers.
+            In <a href="https://home.chpc.utah.edu/~u0033399/index.html" target="_blank" rel="noopener">Dr. Julio Facelli's lab</a>
+            at the University of Utah, I study the pathogenesis of autoimmune diseases — including type 1 diabetes
+            mellitus — through molecular mimicry, examining structural homology between viral epitopes and human
+            proteins as candidate disease triggers.
           </p>
+          <a href="https://doi.org/10.1093/oxfimm/iqag011" target="_blank" rel="noopener" class="proj-link">Read the publication in <em>Oxford Open Immunology</em> <i class="bi bi-box-arrow-up-right"></i></a>
+        </div>
+
+        <div class="proj-card">
+          <div class="proj-head">
+            <h3 class="proj-title">Map the System: Air Pollution in West Salt Lake Valley</h3>
+            <span class="proj-tag">Systems Thinking · Oxford Global Final</span>
+          </div>
+          <p class="proj-body">
+            A systems-thinking approach to understanding the structural inequalities behind why West Salt Lake
+            residents have a life expectancy roughly ten years shorter than their East Salt Lake neighbors.
+            Presented at the Map the System Global Final at the University of Oxford.
+          </p>
+          <a href="./Summary_AirPollutionUtah.pdf" target="_blank" rel="noopener" class="proj-link">View written report <i class="bi bi-file-earmark-text"></i></a>
         </div>
 
         <div class="proj-card">
@@ -478,6 +523,18 @@
           <a href="./Supplemental_Instruction/Final_review.html" class="proj-link">Open resources <i class="bi bi-arrow-right-short"></i></a>
         </div>
 
+        <div class="proj-card">
+          <div class="proj-head">
+            <h3 class="proj-title"><a href="./BIOL3100_Project/Final_Project.html">BIOL 3100 Final Project</a></h3>
+            <span class="proj-tag">Data Analysis</span>
+          </div>
+          <p class="proj-body">
+            An investigation into the relationship between air quality and life expectancy across the
+            United States, combining public health and environmental datasets.
+          </p>
+          <a href="./BIOL3100_Project/Final_Project.html" class="proj-link">View project <i class="bi bi-arrow-right-short"></i></a>
+        </div>
+
       </div>
       <div class="proj-cta reveal">
         <a href="https://github.com/mckayjones4" target="_blank" rel="noopener" class="btn btn-outline">
@@ -487,8 +544,83 @@
     </div>
   </section>
 
+  <!-- HONORS, AWARDS & LEADERSHIP -->
+  <section id="awards" class="bg-alt">
+    <div class="inner">
+      <div class="reveal">
+        <p class="s-label">Recognition</p>
+        <h2 class="s-title">Honors, Awards &amp; Leadership</h2>
+        <div class="s-rule"></div>
+      </div>
+      <div class="hl-grid reveal">
+        <div>
+          <p class="hl-col-label">Awards &amp; Fellowships</p>
+          <div class="hl-item">
+            <span class="hl-name"><span class="hl-badge">1st Place</span> — Map the System Research Competition, UVU</span>
+            <span class="hl-year">2024</span>
+          </div>
+          <div class="hl-item">
+            <span class="hl-name"><span class="hl-badge">1st Place</span> — Design for Impact Research Competition, UVU</span>
+            <span class="hl-year">2024</span>
+          </div>
+          <div class="hl-item">
+            <span class="hl-name">Station1 Frontiers Fellowship<span class="hl-sub">MIT-affiliated, fully funded</span></span>
+            <span class="hl-year">2024–26</span>
+          </div>
+          <div class="hl-item">
+            <span class="hl-name">SPUR Research Fellowship<span class="hl-sub">University of Utah</span></span>
+            <span class="hl-year">2025</span>
+          </div>
+          <div class="hl-item">
+            <span class="hl-name">Presidential Merit Scholarship</span>
+            <span class="hl-year">2023–</span>
+          </div>
+          <div class="hl-item">
+            <span class="hl-name">Lt. Governor's Volunteer Recognition</span>
+            <span class="hl-year">2025, 26</span>
+          </div>
+          <div class="hl-item">
+            <span class="hl-name">Dean's List</span>
+            <span class="hl-year">2023–</span>
+          </div>
+        </div>
+        <div>
+          <p class="hl-col-label">Leadership &amp; Service</p>
+          <div class="hl-item">
+            <span class="hl-name">Vice President, Utah International Mountain Forum<span class="hl-sub">UN CSW69 delegate, New York City</span></span>
+            <span class="hl-year">2024–25</span>
+          </div>
+          <div class="hl-item">
+            <span class="hl-name">Senior News Editor, <a href="https://www.uvureview.com/author/mckjones2024/" target="_blank" rel="noopener">The UVU Review</a><span class="hl-sub">Independent student-run news organization</span></span>
+            <span class="hl-year">2024–26</span>
+          </div>
+          <div class="hl-item">
+            <span class="hl-name">College Community Engagement Councilmember<span class="hl-sub">State of Utah</span></span>
+            <span class="hl-year">2024–26</span>
+          </div>
+          <div class="hl-item">
+            <span class="hl-name">Honors Program Student Ambassador<span class="hl-sub">Utah Valley University</span></span>
+            <span class="hl-year">2025–</span>
+          </div>
+          <div class="hl-item">
+            <span class="hl-name">Community Building Outreach Fellow<span class="hl-sub">UVU Center for Social Impact</span></span>
+            <span class="hl-year">2024–25</span>
+          </div>
+          <div class="hl-item">
+            <span class="hl-name">Supplemental Instruction Leader<span class="hl-sub">General Chemistry · 200+ students / semester</span></span>
+            <span class="hl-year">2024–</span>
+          </div>
+          <div class="hl-item">
+            <span class="hl-name">Writing Consultant &amp; Lead Fellow<span class="hl-sub">UVU Writing Center · 340+ students</span></span>
+            <span class="hl-year">2024–</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- PORTFOLIO -->
-  <section id="portfolio" class="bg-alt">
+  <section id="portfolio">
     <div class="inner">
       <div class="reveal">
         <p class="s-label">Presentations · Leadership · Research</p>
@@ -508,6 +640,16 @@
           <div class="pf-overlay"><span>MTS Global Final — Oxford</span></div>
         </div>
 
+        <div class="pf-item" data-cat="research" data-cap="Broad Institute">
+          <img src="images/portfolio/Broad_sign1.JPG" alt="McKay at the Broad Institute of MIT and Harvard">
+          <div class="pf-overlay"><span>Broad Institute</span></div>
+        </div>
+
+        <div class="pf-item" data-cat="research" data-cap="BSRP 2026 Cohort">
+          <img src="images/portfolio/BSRP_group.jpg" alt="The 2026 cohort of the Broad Summer Research Program (BSRP)">
+          <div class="pf-overlay"><span>BSRP 2026 Cohort</span></div>
+        </div>
+        
         <div class="pf-item" data-cat="research presentations" data-cap="SPUR 2025 poster — University of Utah, Department of Biomedical Informatics">
           <img src="images/portfolio/SPUR_mckay.jpg" alt="McKay with SPUR 2025 research poster on molecular mimicry">
           <div class="pf-overlay"><span>SPUR 2025 Poster</span></div>
@@ -523,14 +665,19 @@
           <div class="pf-overlay"><span>CCEC — State of Utah</span></div>
         </div>
 
+        <div class="pf-item" data-cat="research presentations" data-cap="McKay and Lerato">
+          <img src="images/portfolio/lerato.jpg" alt="McKay and his mentor, Lerato Majara, at the Broad Institute of MIT and Harvard">
+          <div class="pf-overlay"><span>McKay and Lerato</span></div>
+        </div>
+
         <div class="pf-item" data-cat="leadership" data-cap="Hosting and moderating an environmental-themed panel at UVU">
           <img src="images/portfolio/EJ_Panel.png" alt="McKay Jones moderating an environmental panel at Utah Valley University">
           <div class="pf-overlay"><span>Environmental Panel — UVU</span></div>
         </div>
 
-        <div class="pf-item" data-cat="presentations" data-cap="Map the System Global Final — team at the University of Oxford, UK">
+        <div class="pf-item" data-cat="presentations" data-cap="Map the System Global Final at the University of Oxford, UK">
           <img src="images/portfolio/MTS_group.jpg" alt="Map the System Global Final at the University of Oxford">
-          <div class="pf-overlay"><span>Map the System — Team</span></div>
+          <div class="pf-overlay"><span>Map the System</span></div>
         </div>
 
         <div class="pf-item" data-cat="leadership" data-cap="Writing Consultant at UVU's Writing Center">
@@ -541,6 +688,31 @@
         <div class="pf-item" data-cat="leadership" data-cap="69th Commission on the Status of Women at the United Nations">
           <img src="images/portfolio/UN_group.JPG" alt="Attending the 69th Commission on the Status of Women at the United Nations">
           <div class="pf-overlay"><span>UN CSW69</span></div>
+        </div>
+
+        <div class="pf-item" data-cat="research presentations" data-cap="Broad Presentation">
+          <img src="images/portfolio/present_BSRP.jpg" alt="Presenting about the AMP SCZ project at the Broad Institute of MIT and Harvard">
+          <div class="pf-overlay"><span>AMP SCZ Presentation</span></div>
+        </div>
+
+        <div class="pf-item" data-cat="research" data-cap="Martin Lab">
+          <img src="images/portfolio/martin_lab.jpg" alt="Members of Alicia Martin's lab, based at the Analytic & Translational Genetics Unit in Massachusetts General Hospital">
+          <div class="pf-overlay"><span>Martin Lab</span></div>
+        </div>
+
+      <div class="pf-item" data-cat="research presentations" data-cap="BSRP Poster Presentation">
+          <img src="images/portfolio/mckay_chris_emily.jpg" alt="McKay Jones, Emily Ramirez, and Christian Hernandez presenting at the Broad Summer Research Program.">
+          <div class="pf-overlay"><span>BSRP Poster Presentation</span></div>
+        </div>
+
+        <div class="pf-item" data-cat="research" data-cap="Station1 Research Group">
+          <img src="images/portfolio/Station1_noteastgroup.jpg" alt="McKay with the Station1 research group, undergraduate researchers studying technological progress and its societal impacts">
+          <div class="pf-overlay"><span>Station1 Research Group</span></div>
+        </div>
+
+        <div class="pf-item" data-cat="leadership" data-cap="Center for Social Impact">
+          <img src="images/portfolio/CSI_group.jpg" alt="2025 Social Impact Fellows Cohort">
+          <div class="pf-overlay"><span>Center for Social Impact</span></div>
         </div>
 
       </div>
